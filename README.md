@@ -9,18 +9,43 @@ To include bundler we use "npm install -D parcel". -D because there are two type
 # and All the bundling is done in development phase, thats why we install it in dev environment.
 
 # Q3)- What is .parcel-cache?
+It is a directory which is created automatically whenever Parcel executes some builds. To improve the performance, parcel utilizes caching. It stores the result of previous build operations in 'parcel-cache' directory.
+When we re-run parcel, it checks that are there any modifications in the file, if not, then parcel utilize that cached file to skip some processing steps to return faster builds.
 
 # Q4)- What is npx?
+Basically npx is used for executing the package. It's purpose is to execute packages directly from npm registry or locally installed ones, without the need to explicitly install them as global dependencies. 
+Npx first checks if the package name (in our case parcel) is present or not. If it is not present then it automatically downloads it temporarily in node_modules folder, and after executing any given action, it deletes it.
+(NOTE: when we run 'npx parcel index.html' , the terminal becomes unresponsive. In other words, it doesnot take any commands or clicks because it starts the development server and it continues to check for changes and make them visible on end side. Therefore, if we want to perform any other command, it is advisable to kill the terminal and start in a new one.)
+
 
 # Q5)- What is the difference between dependencies and devDependencies?
 (A). Dev dependencies- there are required during the development phase , and (B)- Normal dependencies- they may be required in production or testing environment.
 
 # Q6)- What is Tree Shaking?
+Tree shaking is an inbuild feature of parcel which automatically removes the code from our JavaScript file (during the bundling process), which has not been in the use or dead code. It is done to not only optimize the size of the final bundle, but also to improve the performance of your application. 
 
 # Q7)- What is Hot Module Replacement?
+Hot module replacement is a process which enables real-time updates of modules and components in your application without requiring a full page reload.
+As soon as you save the changes, Parcel detects these modifications and recompiles the affected modules. These changes are seamlessly injected into the browser without losing the current application state.
+It detects the modifications using "FILE WATCHING ALGORITHM" which is written in C++.
 
 
 # Q8)- List down your 5 favourite superpowers of Parcel and describe any 3 of them in your own words?
+Although there are multifarious superpowers of Parcel, the top 5 according to me are as follows:
+1- Hot Module Replacement
+2- Tree Shaking
+3- Diagnosis(beautiful error handling)
+4- Code splitting
+5- Content hashing
+Now we will see three of them in detail:
+a) Whereas in the past errors were not very beautiful to our eyes. They are seen in the console without any detail and  beutification. With Parcels' Diagnosis feature, not only they are shown in a beutiful manner, but also it suggest how to eradicate them effeciently. This makes the life of a developer a lot easier to debug.
+
+b) Code splitting: It is a technique used by Parcel to break down a large JavaScript bundle into smaller more manageable chunks called 'split points' or 'chunks'. Each chunk represent a separate piece of code that can be loaded and executed independently when needed, rather than loading the entire bundle at once.
+This technique helps improve performance by reducing the initial load time and optimizing resource utilization.
+Parcel looks dependencies and analyse the boundaries where to split.
+
+c)- Content Hashing: Parcel adds a unique identifier to file names based on their content, which enables long-term browser caching. It ensures that the correct version of a file is served to clients and to prevent caching issues. For example, orignal file name -> bundle.js. Parcel generate a hashed file name like bundle.82a54cd9.js.
+This ensures that whenever the content of the file changes, the file name also changes.
 
 
 
@@ -43,10 +68,18 @@ node_modules is kind of a database which contains all the code that we fetched f
 
 
 # Q13)- What is " dist " folder?
+It is the output directory where the bundled and optimized files are generated during the build process.
+When you build a project with parcel, it takes your source code,processes it, and created a production-ready bundle that contains all the necessary files for your application to run.
+This bundle includes optimized and minified versions of HTML, CSS, JAVASCRIPT and other assets.
 
 
 
 # Q14)- What is 'browserlists'. Read about different bundlers vite,webpack, parcel.
+Browserlist is a configuration file which allows you to define a list of target browsers or environments that your code should support. These tools determines which transformations are necessary to ensure compatibility with the specified targets.
+To illustrate, "browserlist":["Last 2 versions","Chrome >=70","not ie <= 11"]
+first includes the latest 2 versions of all major browsers
+second includes specified version of a browser
+last excludes specific browser or version
 
 
 
@@ -58,6 +91,10 @@ It is therefore advisable to use caret because it will keep the file updated, ho
 
 
 # Q16)- Script types in HTML?
+async
+defer
+crossorigin
+fetchpriority(high,low,auto)
 
 
 
